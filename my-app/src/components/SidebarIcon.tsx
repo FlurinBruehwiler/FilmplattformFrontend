@@ -6,7 +6,10 @@ interface SidebarIconProps {
 }
 
 export default (props: SidebarIconProps) => (
-  <div className="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-gray-800 rounded-2xl">
+  <button
+    className="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-sidebarIcon 
+  rounded-2xl hover:bg-buttonHover"
+  >
     <IconContext.Provider
       value={{
         color: "white",
@@ -15,5 +18,5 @@ export default (props: SidebarIconProps) => (
     >
       <div>{props.icon}</div>
     </IconContext.Provider>
-  </div>
+  </button>
 );

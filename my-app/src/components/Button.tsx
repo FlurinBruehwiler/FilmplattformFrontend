@@ -3,7 +3,7 @@ interface ButtonProps {
 }
 
 export default (props: ButtonProps) => (
-  <button className="bg-gray-800 h-12 w-32 text-white rounded-xl mt-12">
+  <button className="bg-button hover:bg-buttonHover h-12 w-32 text-text rounded-xl mt-12">
     {props.text}
   </button>
 );
