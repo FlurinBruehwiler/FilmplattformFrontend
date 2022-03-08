@@ -12,6 +12,9 @@ module.exports = {
         sidebarIcon: "#445566",
         text: "#FFFFFF",
       },
+      gridTemplateColumns: {
+        movieDetails: "1fr 2fr 1fr",
+      },
     },
   },
   plugins: [],
