@@ -10,7 +10,7 @@ module.exports = {
         buttonHover: "#E87B18",
         sidebar: "#292E33",
         sidebarIcon: "#445566",
-        text: "#FFFFFF",
+        text: "#000000",
       },
       gridTemplateColumns: {
         movieDetails: "1fr 2fr 1fr",
