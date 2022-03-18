@@ -14,11 +14,13 @@ export default (props: InputProps) => {
   };
 
   return (
-    <div className="text-text">
-      <p>{props.label}</p>
+    <div className="text-fp-100">
+      <p className="font-bold">{props.label}</p>
       <input
         type={props.isEmail ? "email" : "text"}
-        className="rounded-xl h-10 w-48 text-black"
+        spellCheck="false"
+        className="rounded-xl h-12 w-72 px-3 py-2 text-lg focus:outline-none focus:border-fp-100 selection:bg-fp-500 
+        focus:ring focus:ring-fp-100 bg-fp-400 font-semibold"
         onChange={handleChange}
         value={username}
       />

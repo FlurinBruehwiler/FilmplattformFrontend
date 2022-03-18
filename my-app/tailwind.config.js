@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#14181C",
-        button: "#445566",
-        buttonHighlightet: "#354351",
-        buttonHover: "#E87B18",
-        sidebar: "#292E33",
-        sidebarIcon: "#445566",
-        text: "#ffffff",
+        fp: {
+          100: "#252627",
+          200: "#564E58",
+          300: "#904E55",
+          400: "#BFB48F",
+          500: "#F2EFE9",
+        },
       },
       gridTemplateColumns: {
         movieDetails: "1fr 2fr 1fr",

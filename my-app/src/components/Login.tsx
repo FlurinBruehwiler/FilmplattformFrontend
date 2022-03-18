@@ -9,10 +9,7 @@ export default () => {
         <div className="text-text"></div>
       </div>
 
-      <div className="items center space-x-5">
-        <Button text={"Login"} />
-        <Button text={"Create Account"} />
-      </div>
+      <div className="items center space-x-5"></div>
     </div>
   );
 };

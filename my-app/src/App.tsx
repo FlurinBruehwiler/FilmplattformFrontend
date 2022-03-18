@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default () => (
   <Router>
-    <div className="flex justify-center min-h-screen bg-background">
+    <div className="flex justify-center min-h-screen bg-fp-500">
       <div>
         <Sidebar />
         <div>
