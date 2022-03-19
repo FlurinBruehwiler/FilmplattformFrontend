@@ -1,29 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 interface InputProps {
   label: string;
-  isEmail?: boolean;
+  type?: string;
   parentCallback: (childData: string) => void;
+  errorText: string;
 }
 
 export default (props: InputProps) => {
-  const [username, setUsername] = useState("");
+  const [value, setValue] = useState("");
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-    props.parentCallback(username);
+    setValue(e.currentTarget.value);
   };
+
+  useEffect(() => {
+    props.parentCallback(value);
+  });
 
   return (
     <div className="text-fp-100">
       <p className="font-bold">{props.label}</p>
       <input
-        type={props.isEmail ? "email" : "text"}
+        type={props.type != undefined ? props.type : "text"}
         spellCheck="false"
         className="rounded-xl h-12 w-72 px-3 py-2 text-lg focus:outline-none focus:border-fp-100 selection:bg-fp-500 
         focus:ring focus:ring-fp-100 bg-fp-400 font-semibold"
         onChange={handleChange}
-        value={username}
+        value={value}
       />
+      <p className="text-fp-300">{props.errorText}</p>
     </div>
   );
 };

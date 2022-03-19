@@ -1,5 +1,5 @@
 import Button from "./Button";
-import Input from "./Input";
+import Textbox from "./Textbox";
 import React, { useState } from "react";
 
 export default () => {

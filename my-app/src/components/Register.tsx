@@ -1,17 +1,27 @@
 import Button from "./Button";
-import Input from "./Input";
+import Textbox from "./Textbox";
 import { AiFillPlusCircle } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 
 export default () => {
+  const emailRegex =
+    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [isCreating, setCreating] = useState(false);
+  const [isSending, setIsSenting] = useState(false);
+
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordCheckError, setPasswordCheckError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [firstnameError, setFirstnameError] = useState("");
+  const [lastnameError, setLastnameError] = useState("");
 
   const changeUsername = (childData: string) => setUsername(childData);
   const changePassword = (childData: string) => setPassword(childData);
@@ -22,9 +32,11 @@ export default () => {
   const changeLastname = (childData: string) => setLastname(childData);
 
   const submit = () => {
-    if (isCreating) return;
-    setCreating(true);
+    if (isSending) return;
+    console.log("Button press");
+    if (!validate()) return;
     async function sendData() {
+      setIsSenting(true);
       const request = await axios
         .post("/Auth/register", {
           username: username,
@@ -34,21 +46,48 @@ export default () => {
           email: email,
         })
         .catch((error) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
+          if (error.response.data.includes("Username")) {
+            setUsernameError(error.response.data);
           } else {
-            console.log("Error", error.message);
+            setEmailError(error.response.data);
           }
-          console.log(error.config);
         });
-      setCreating(false);
-      console.log(request);
+      setIsSenting(false);
     }
     sendData();
+  };
+
+  const validate = (): boolean => {
+    let isValid = true;
+    setEmailError("");
+    setFirstnameError("");
+    setLastnameError("");
+    setUsernameError("");
+    setPasswordError("");
+    setPasswordCheckError("");
+
+    if (!emailRegex.test(email)) {
+      setEmailError("No Valid Email");
+      isValid = false;
+    }
+    if (firstname === "") {
+      setFirstnameError("Field is required");
+    }
+    if (lastname === "") {
+      setLastnameError("Field is required");
+    }
+    if (username === "") {
+      setUsernameError("Field is required");
+    }
+    console.log(password.length);
+    console.log(password);
+    if (password.length < 6) {
+      setPasswordError("At least 6 characters");
+    } else if (password !== passwordCheck) {
+      setPasswordCheckError("Passwords must match");
+    }
+
+    return isValid;
   };
 
   return (
@@ -66,15 +105,46 @@ export default () => {
         ></img>
       </label>
       <div className="grid grid-cols-2 gap-x-5 gap-y-5 mt-10">
-        <Input label={"Username"} parentCallback={changeUsername} />
-        <Input label={"Email"} isEmail={true} parentCallback={changeEmail} />
-        <Input label={"First Name"} parentCallback={changeFirstname} />
-        <Input label={"Last Name"} parentCallback={changeLastname} />
-        <Input label={"Password"} parentCallback={changePassword} />
-        <Input label={"Password Check"} parentCallback={changePasswordCheck} />
+        <Textbox
+          label={"Username"}
+          parentCallback={changeUsername}
+          errorText={usernameError}
+        />
+        <Textbox
+          label={"Email"}
+          type={"email"}
+          parentCallback={changeEmail}
+          errorText={emailError}
+        />
+        <Textbox
+          label={"First Name"}
+          parentCallback={changeFirstname}
+          errorText={firstnameError}
+        />
+        <Textbox
+          label={"Last Name"}
+          parentCallback={changeLastname}
+          errorText={lastnameError}
+        />
+        <Textbox
+          label={"Password"}
+          parentCallback={changePassword}
+          type={"password"}
+          errorText={passwordError}
+        />
+        <Textbox
+          label={"Password Check"}
+          parentCallback={changePasswordCheck}
+          type={"password"}
+          errorText={passwordCheckError}
+        />
       </div>
       <div className="flex justify-end">
-        <Button text={"Create Account"} clickCallback={submit} />
+        <Button
+          text={"Create Account"}
+          clickCallback={submit}
+          isLoading={isSending}
+        />
       </div>
     </div>
   );
