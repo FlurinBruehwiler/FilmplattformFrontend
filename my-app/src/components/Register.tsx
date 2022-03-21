@@ -1,12 +1,15 @@
 import Button from "./Button";
 import Textbox from "./Textbox";
 import { AiFillPlusCircle } from "react-icons/ai";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "../axios";
+import { useHistory } from "react-router-dom";
 
 export default () => {
   const emailRegex =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
+  const history = useHistory();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +17,9 @@ export default () => {
   const [email, setEmail] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [image, setImage] = useState<File>();
+  const [imageUrl, setImageUrl] = useState("");
+
   const [isSending, setIsSenting] = useState(false);
 
   const [usernameError, setUsernameError] = useState("");
@@ -22,6 +28,8 @@ export default () => {
   const [emailError, setEmailError] = useState("");
   const [firstnameError, setFirstnameError] = useState("");
   const [lastnameError, setLastnameError] = useState("");
+
+  const [hasError, setHasError] = useState(false);
 
   const changeUsername = (childData: string) => setUsername(childData);
   const changePassword = (childData: string) => setPassword(childData);
@@ -32,6 +40,7 @@ export default () => {
   const changeLastname = (childData: string) => setLastname(childData);
 
   const submit = () => {
+    setHasError(false);
     if (isSending) return;
     console.log("Button press");
     if (!validate()) return;
@@ -44,17 +53,31 @@ export default () => {
           name: lastname,
           vorname: firstname,
           email: email,
+          profilePicture: image,
         })
-        .catch((error) => {
+        .catch((error: any) => {
           if (error.response.data.includes("Username")) {
             setUsernameError(error.response.data);
           } else {
             setEmailError(error.response.data);
           }
+          setHasError(true);
         });
       setIsSenting(false);
     }
     sendData();
+    if (hasError) return;
+    history.push("/MovieDetails");
+  };
+
+  const imageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.target.files;
+    if (!fileList) return;
+    const i = fileList[0];
+    setImage(i);
+    console.log(i.name);
+    setImageUrl(URL.createObjectURL(i));
+    console.log(imageUrl);
   };
 
   const validate = (): boolean => {
@@ -98,9 +121,18 @@ export default () => {
       >
         <div className="absolute w-4 h-4 m-3 bg-fp-500"></div>
         <AiFillPlusCircle color="#564E58" size="40px" className="absolute" />
-        <input type="file" />
+        <input
+          type="file"
+          accept="image/*"
+          multiple={false}
+          onChange={imageChange}
+        />
         <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          src={
+            imageUrl == ""
+              ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              : imageUrl
+          }
           className="object-cover rounded-full"
         ></img>
       </label>
