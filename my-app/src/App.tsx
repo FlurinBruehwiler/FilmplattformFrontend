@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import MovieDetails from "./components/MovieDetails";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Search from "./components/Search";
 
 export default () => (
   <Router>
@@ -19,6 +20,9 @@ export default () => (
             </Route>
             <Route exact path="/MovieDetails">
               <MovieDetails />
+            </Route>
+            <Route exact path="/Search">
+              <Search />
             </Route>
           </Switch>
         </div>

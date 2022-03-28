@@ -28,7 +28,7 @@ export default () => {
           username: username,
           password: password,
         })
-        .catch((error) => {
+        .catch((error: any) => {
           if (error.response.data.includes("User")) {
             setUsernameError(error.response.data);
           } else {
