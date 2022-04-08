@@ -29,8 +29,6 @@ export default () => {
   const [firstnameError, setFirstnameError] = useState("");
   const [lastnameError, setLastnameError] = useState("");
 
-  const [hasError, setHasError] = useState(false);
-
   const changeUsername = (childData: string) => setUsername(childData);
   const changePassword = (childData: string) => setPassword(childData);
   const changePasswordCheck = (childData: string) =>
@@ -39,8 +37,8 @@ export default () => {
   const changeFirstname = (childData: string) => setFirstname(childData);
   const changeLastname = (childData: string) => setLastname(childData);
 
-  const submit = () => {
-    setHasError(false);
+  const submit = async () => {
+    let hasErrors = false;
     if (isSending) return;
     console.log("Button press");
     if (!validate()) return;
@@ -56,17 +54,17 @@ export default () => {
           profilePicture: image,
         })
         .catch((error: any) => {
+          hasErrors = true;
           if (error.response.data.includes("Username")) {
             setUsernameError(error.response.data);
           } else {
             setEmailError(error.response.data);
           }
-          setHasError(true);
         });
       setIsSenting(false);
     }
-    sendData();
-    if (hasError) return;
+    await sendData();
+    if (hasErrors) return;
     history.push("/MovieDetails");
   };
 
