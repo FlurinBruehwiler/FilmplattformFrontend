@@ -6,7 +6,7 @@ import { BsCardList, BsFillPersonFill } from "react-icons/bs";
 export default () => (
   <div
     className="fixed top-0 left-0 h-screen w-16 m-0
-  flex flex-col bg-fp-100 text-text shadow-lg align-middle justify-between"
+  flex flex-col bg-fp-190 text-text shadow-lg align-middle justify-between"
   >
     <div>
       <SidebarIcon icon={<AiOutlineSearch />} name={"Search"} />

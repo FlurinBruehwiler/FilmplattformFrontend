@@ -7,7 +7,7 @@ import Search from "./components/Search";
 
 export default () => (
   <Router>
-    <div className="flex justify-center min-h-screen bg-fp-500">
+    <div className="flex justify-center min-h-screen bg-fp-100">
       <div>
         <Sidebar />
         <div>

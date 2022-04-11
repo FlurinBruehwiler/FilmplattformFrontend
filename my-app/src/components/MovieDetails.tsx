@@ -4,7 +4,7 @@ import { BsCardList, BsFillShareFill } from "react-icons/bs";
 import { FaComments, FaRegComments } from "react-icons/fa";
 
 export default () => (
-  <div>
+  <div className="text-fp-500">
     <div className="absolute w-[60rem] h-[30rem]">
       <div className="absolute bg-banner w-[100%] h-[100%]"></div>
       <div className="bg-[url('https://clownmagazine.co.uk/Dune%20-%20Film%20Poster.jpg')] w-[100%] h-[100%] bg-cover"></div>
