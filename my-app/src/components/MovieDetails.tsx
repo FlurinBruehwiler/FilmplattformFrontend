@@ -2,6 +2,7 @@ import { IconContext } from "react-icons";
 import { AiFillClockCircle, AiFillHeart } from "react-icons/ai";
 import { BsCardList, BsFillShareFill } from "react-icons/bs";
 import { FaComments, FaRegComments } from "react-icons/fa";
+import Watchevent from "./Watchevent";
 
 export default () => (
   <div className="text-fp-500">
@@ -32,6 +33,7 @@ export default () => (
           those who can conquer their fear will survive.
         </p>
       </div>
+
       <div>
         <IconContext.Provider
           value={{
@@ -65,7 +67,7 @@ export default () => (
             <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <p className="text-2xl">4.5</p>
-              <p className="text-center">Avg. Ratings</p>
+              <p className="text-center">Avg. Rating</p>
             </a>
             <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
@@ -74,6 +76,39 @@ export default () => (
             </a>
           </div>
         </IconContext.Provider>
+      </div>
+    </div>
+    <div className="flex w-[100%] mt-10">
+      <div className="w-[50%] mr-5">
+        <p>Your Watchevents:</p>
+        <div className="flex flex-col mt-2">
+          <Watchevent
+            user={"Flurin Brühwiler"}
+            date={"13.09.2022"}
+            rating={4}
+            comment={"A very good Movie"}
+            isOwn={true}
+          />
+          <Watchevent
+            user={"Flurin Brühwiler"}
+            date={"13.09.2022"}
+            rating={4}
+            comment={"A very good Movie"}
+            isOwn={true}
+          />
+        </div>
+      </div>
+      <div className="w-[50%] ml-5">
+        <p>Your Friends Watchevents:</p>
+        <div className="flex flex-col mt-2">
+          <Watchevent
+            user={"Hen47rik"}
+            date={"20.09.2021"}
+            rating={3}
+            comment={"A very good Movie"}
+            isOwn={false}
+          />
+        </div>
       </div>
     </div>
   </div>
