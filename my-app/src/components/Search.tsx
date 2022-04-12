@@ -1,5 +1,5 @@
 import Button from "./Button";
-import NavButton from "./Navbutton";
+import Navbar from "./Navbar";
 import Textbox from "./Textbox";
 import { AiFillPlusCircle } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
@@ -31,9 +31,9 @@ export default () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-row items-center mt-5">
-        <div className="justify-content:center mr-3">
+    <div className="w-[40rem]">
+      <div className="flex mt-5 justify-between w-[100%] mb-4">
+        <div className="mr-4 w-[100%]">
           <Textbox
             label={""}
             parentCallback={changeSearch}
@@ -49,20 +49,26 @@ export default () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-4 mt-2 rounded-xl" role="group">
-        <NavButton text={"Film"} clickCallback={submit} isLoading={isSending} />
-        <NavButton
-          text={"Person"}
-          clickCallback={submit}
-          isLoading={isSending}
-        />
-        <NavButton
-          text={"Liste"}
-          clickCallback={submit}
-          isLoading={isSending}
-        />
-        <NavButton text={"User"} clickCallback={submit} isLoading={isSending} />
-      </div>
+      <Navbar
+        entries={[
+          {
+            text: "Film",
+            clickCallback: () => {},
+          },
+          {
+            text: "Person",
+            clickCallback: () => {},
+          },
+          {
+            text: "Liste",
+            clickCallback: () => {},
+          },
+          {
+            text: "User",
+            clickCallback: () => {},
+          },
+        ]}
+      ></Navbar>
     </div>
   );
 };
