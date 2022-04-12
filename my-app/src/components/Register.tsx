@@ -115,10 +115,10 @@ export default () => {
     <div className="min-w-[25rem] flex flex-col items-center">
       <label
         id="profilepic"
-        className="rounded-full flex justify-end w-40 h-40 mt-10 border-4 border-fp-200 cursor-pointer"
+        className="rounded-full flex justify-end w-40 h-40 mt-10 border-4 border-fp-300 cursor-pointer"
       >
         <div className="absolute w-4 h-4 m-3 bg-fp-500"></div>
-        <AiFillPlusCircle color="#564E58" size="40px" className="absolute" />
+        <AiFillPlusCircle color="#702632" size="40px" className="absolute" />
         <input
           type="file"
           accept="image/*"
@@ -169,7 +169,7 @@ export default () => {
           errorText={passwordCheckError}
         />
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-5">
         <Button
           text={"Create Account"}
           clickCallback={submit}

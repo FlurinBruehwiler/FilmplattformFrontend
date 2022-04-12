@@ -5,7 +5,7 @@ import { FaComments, FaRegComments } from "react-icons/fa";
 
 export default () => (
   <div className="text-fp-500">
-    <div className="absolute w-[60rem] h-[30rem]">
+    <div className="absolute w-[60rem] h-[30rem] left-[50%] translate-x-[-50%]">
       <div className="absolute bg-banner w-[100%] h-[100%]"></div>
       <div className="bg-[url('https://clownmagazine.co.uk/Dune%20-%20Film%20Poster.jpg')] w-[100%] h-[100%] bg-cover"></div>
     </div>
@@ -39,33 +39,35 @@ export default () => (
             size: "40px",
           }}
         >
-          <div className="grid grid-cols-2">
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-tl-2xl">
+          <div className="grid grid-cols-2 bg-fp-300 rounded-2xl grid-rows-2 h-[180px] cursor-pointer">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <AiFillHeart />
               <p className="text-center">Like</p>
             </a>
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-tr-2xl">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <AiFillClockCircle />
-              <p className="text-center">Like</p>
+              <p className="text-center">Watchlist</p>
             </a>
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-bl-2xl">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <BsFillShareFill />
-              <p className="text-center">Like</p>
+              <p className="text-center">Share</p>
             </a>
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-br-2xl">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <BsCardList />
               <p className="text-center">List</p>
             </a>
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-l-2xl mt-5">
+          </div>
+          <div className="grid grid-cols-2 bg-fp-300 rounded-2xl grid-rows-1 h-[90px] mt-5 cursor-pointer">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
-              <BsFillShareFill />
-              <p className="text-center">Rating</p>
+              <p className="text-2xl">4.5</p>
+              <p className="text-center">Avg. Ratings</p>
             </a>
-            <a className="hover:bg-buttonHover px-7 py-4 bg-button rounded-r-2xl mt-5">
+            <a className="hover:bg-fp-400 bg-fp-300 rounded-2xl flex justify-center items-center flex-col">
               {" "}
               <FaComments />
               <p className="text-center">Ratings</p>
