@@ -12,7 +12,7 @@ interface WatcheventProps {
 export default (props: WatcheventProps) => {
   return (
     <button
-      className="h-[100%] w-[100%] text-fp-500 rounded-2xl font-bold bg-transparent hover:bg-transparent
+      className="h-full w-full text-fp-500 rounded-2xl font-bold bg-transparent hover:bg-transparent
           focus:ring focus:ring-fp-500 focus:outline-none mb-3 border-[1px] pl-5 pr-3 pt-1 pb-1"
     >
       {props.isOwn ? (

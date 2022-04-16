@@ -7,12 +7,12 @@ import Watchevent from "./Watchevent";
 export default () => (
   <div className="text-fp-500">
     <div className="absolute w-[60rem] h-[30rem] left-[50%] translate-x-[-50%]">
-      <div className="absolute bg-banner w-[100%] h-[100%]"></div>
-      <div className="bg-[url('https://clownmagazine.co.uk/Dune%20-%20Film%20Poster.jpg')] w-[100%] h-[100%] bg-cover"></div>
+      <div className="absolute bg-banner w-full h-full"></div>
+      <div className="bg-[url('https://clownmagazine.co.uk/Dune%20-%20Film%20Poster.jpg')] w-full h-full bg-cover"></div>
     </div>
     <div className="w-[50rem] grid grid-cols-movieDetails text-text gap-x-10 pt-80 content-center relative">
       <img
-        className="h-[60] rounded-2xl border-text border-solid border-[1px] row-span-2"
+        className="h-[60] rounded-2xl border-solid border-[1px] row-span-2"
         src="https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-460-0-690-crop.jpg?k=11ccbe9f2b"
         alt="Dune Poster"
       />
@@ -78,7 +78,7 @@ export default () => (
         </IconContext.Provider>
       </div>
     </div>
-    <div className="flex w-[100%] mt-10">
+    <div className="flex w-full mt-10">
       <div className="w-[50%] mr-5">
         <p>Your Watchevents:</p>
         <div className="flex flex-col mt-2">

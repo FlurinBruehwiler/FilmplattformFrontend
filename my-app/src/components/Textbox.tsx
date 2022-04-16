@@ -19,13 +19,13 @@ export default (props: InputProps) => {
   });
 
   return (
-    <div className="w-[100%]">
+    <div className="w-full">
       <p className="font-bold text-fp-500">{props.label}</p>
       <input
         type={props.type != undefined ? props.type : "text"}
         spellCheck="false"
         className="rounded-xl h-12 px-3 py-2 text-lg focus:outline-none focus:border-fp-100 selection:bg-fp-500 
-        focus:ring focus:ring-fp-300 bg-fp-500 font-semibold placeholder-fp-110 w-[100%]"
+        focus:ring focus:ring-fp-300 bg-fp-500 font-semibold placeholder-fp-110 w-full"
         onChange={handleChange}
         placeholder={props.placeholder != undefined ? props.placeholder : ""}
         value={value}
