@@ -143,10 +143,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         movieDetails: "1fr 2fr 1fr",
+        cast: "1fr 1fr 1px 1fr 1fr",
       },
     },
   },
-  plugins: [],
 };
 
 function brighter(hex) {

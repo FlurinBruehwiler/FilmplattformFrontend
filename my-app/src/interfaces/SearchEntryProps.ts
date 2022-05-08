@@ -1,7 +1,7 @@
 export default interface SearchEntryProps {
-    title: string;
-    releaseDate: string;
+  original_title: string;
+    release_date: string;
     director: string;
-    posterUrl: string;
+    poster_path: string;
     id: number;
   }

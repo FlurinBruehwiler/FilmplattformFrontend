@@ -9,7 +9,7 @@ import SearchResultProps from "../interfaces/SearchResultProps";
 
 export default () => {
   const [search, setSearch] = useState("");
-  const [isSending, setIsSenting] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const changeSearch = (childData: string) => setSearch(childData);
 
@@ -18,26 +18,32 @@ export default () => {
     SearchResultProps | undefined
   >(undefined);
 
-  const submit = () => {
+  const submit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
     if (isSending) return;
 
     setSearchError("");
 
     async function sendData() {
-      setIsSenting(true);
-      const request = await axios
+      console.log("searching with keyword     : " + search);
+      setIsSending(true);
+      axios
         .get<SearchResultProps>("/Search/SearchMovies/" + search)
+        .then((response) => {
+          setApiSearchResult(response.data);
+          console.log("getting data: " + JSON.stringify(response.data));
+        })
         .catch((error: any) => {
           setSearchError(error.response.data);
         });
-      setIsSenting(false);
+      setIsSending(false);
     }
     sendData();
   };
 
   return (
-    <div className="w-[40rem]">
-      <div className="flex mt-5 justify-between w-full mb-4">
+    <div className="w-[60rem]">
+      <form onSubmit={submit} className="flex mt-5 justify-between w-full mb-4">
         <div className="mr-4 w-full">
           <Textbox
             label={""}
@@ -47,13 +53,9 @@ export default () => {
           />
         </div>
         <div className="align-items flex-end mt-0">
-          <Button
-            text={"Search"}
-            clickCallback={submit}
-            isLoading={isSending}
-          />
+          <Button text={"Search"} isLoading={isSending} />
         </div>
-      </div>
+      </form>
       <Navbar
         entries={[
           {
@@ -74,18 +76,11 @@ export default () => {
           },
         ]}
       ></Navbar>
-      <SearchResult
-        results={[
-          {
-            title: "Dune",
-            releaseDate: "2021",
-            director: "Denis Villeneuve",
-            posterUrl:
-              "https://a.ltrbxd.com/resized/sm/upload/nx/8b/vs/gc/cDbNAY0KM84cxXhmj8f0dLWza3t-0-460-0-690-crop.jpg?k=11ccbe9f2b",
-            id: 1,
-          },
-        ]}
-      />
+      {isSending || ApiSearchResult == undefined ? (
+        <div></div>
+      ) : (
+        <SearchResult results={ApiSearchResult.results} />
+      )}
     </div>
   );
 };

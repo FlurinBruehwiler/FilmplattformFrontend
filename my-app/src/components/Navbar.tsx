@@ -8,9 +8,13 @@ interface NavbarProps {
 export default (props: NavbarProps) => {
   return (
     <div className="flex justify-between bg-fp-300 rounded-xl">
-      {props.entries.map((entry) => {
+      {props.entries.map((entry, i) => {
         return (
-          <NavbarEntry text={entry.text} clickCallback={entry.clickCallback} />
+          <NavbarEntry
+            text={entry.text}
+            clickCallback={entry.clickCallback}
+            key={i}
+          />
         );
       })}
     </div>

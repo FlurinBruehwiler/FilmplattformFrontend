@@ -3,6 +3,7 @@ import Textbox from "./Textbox";
 import { AiFillPlusCircle } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
+import { useHistory } from "react-router-dom";
 
 export default () => {
   const [username, setUsername] = useState("");
@@ -15,8 +16,11 @@ export default () => {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const submit = () => {
+  const history = useHistory();
+
+  const submit = async () => {
     if (isSending) return;
+    let hasErrors = false;
 
     setUsernameError("");
     setPasswordError("");
@@ -29,6 +33,8 @@ export default () => {
           password: password,
         })
         .catch((error: any) => {
+          console.log(error);
+          hasErrors = true;
           if (error.response.data.includes("User")) {
             setUsernameError(error.response.data);
           } else {
@@ -37,30 +43,27 @@ export default () => {
         });
       setIsSenting(false);
     }
-    sendData();
+    await sendData();
+    if (hasErrors) return;
+    history.push("/Search");
   };
 
   return (
-    <div className="min-w-[25rem] flex flex-col items-center">
-      <div className="grid grid-cols-2 gap-x-5 gap-y-5 mt-52">
-        <Textbox
-          label={"Username"}
-          parentCallback={changeUsername}
-          errorText={usernameError}
-        />
-        <Textbox
-          label={"Password"}
-          parentCallback={changePassword}
-          type={"password"}
-          errorText={passwordError}
-        />
-      </div>
-      <div className="flex justify-end mt-5">
-        <Button
-          text={"Create Account"}
-          clickCallback={submit}
-          isLoading={isSending}
-        />
+    <div className="min-w-[25rem] flex flex-col mt-20">
+      <Textbox
+        label={"Username"}
+        parentCallback={changeUsername}
+        errorText={usernameError}
+      />
+      <div className="h-5"></div>
+      <Textbox
+        label={"Password"}
+        parentCallback={changePassword}
+        type={"password"}
+        errorText={passwordError}
+      />
+      <div className="flex justify-center mt-10">
+        <Button text={"Login"} isLoading={isSending} clickCallback={submit} />
       </div>
     </div>
   );

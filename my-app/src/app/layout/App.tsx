@@ -1,9 +1,9 @@
-import Register from "./components/Register";
-import Login from "./components/Login";
-import MovieDetails from "./components/MovieDetails";
-import Sidebar from "./components/Sidebar";
+import Register from "../../components/Register";
+import Login from "../../components/Login";
+import MovieDetails from "../../components/MovieDetails";
+import Sidebar from "../../components/Sidebar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Search from "./components/Search";
+import Search from "../../components/Search";
 
 export default () => (
   <Router>
@@ -12,13 +12,13 @@ export default () => (
         <Sidebar />
         <div>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/Register">
               <Register />
             </Route>
             <Route exact path="/Login">
               <Login />
             </Route>
-            <Route exact path="/MovieDetails">
+            <Route exact path="/MovieDetails/:movieId">
               <MovieDetails />
             </Route>
             <Route exact path="/Search">

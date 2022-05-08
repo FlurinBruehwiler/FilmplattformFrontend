@@ -1,7 +1,11 @@
 import SidebarIcon from "./SidebarIcon";
 import { AiOutlineSearch, AiOutlineClockCircle } from "react-icons/ai";
 import { BiMoviePlay } from "react-icons/bi";
-import { BsCardList, BsFillPersonFill } from "react-icons/bs";
+import {
+  BsCardList,
+  BsFillPersonCheckFill,
+  BsFillPersonPlusFill,
+} from "react-icons/bs";
 
 export default () => (
   <div
@@ -9,11 +13,38 @@ export default () => (
   flex flex-col bg-fp-190 text-text shadow-lg align-middle justify-between"
   >
     <div>
-      <SidebarIcon icon={<AiOutlineSearch />} name={"Search"} />
-      <SidebarIcon icon={<BiMoviePlay />} name={"Watched Movies"} />
-      <SidebarIcon icon={<AiOutlineClockCircle />} name={"Watched Movies"} />
-      <SidebarIcon icon={<BsCardList />} name={"Watched Movies"} />
+      <SidebarIcon
+        icon={<AiOutlineSearch />}
+        name={"Search"}
+        destination={"/Search"}
+      />
+      <SidebarIcon
+        icon={<BiMoviePlay />}
+        name={"Watched Movies"}
+        destination={"/Search"}
+      />
+      <SidebarIcon
+        icon={<AiOutlineClockCircle />}
+        name={"Watched Movies"}
+        destination={"/Search"}
+      />
+      <SidebarIcon
+        icon={<BsCardList />}
+        name={"Watched Movies"}
+        destination={"/Search"}
+      />
     </div>
-    <SidebarIcon icon={<BsFillPersonFill />} name={"Watched Movies"} />
+    <div>
+      <SidebarIcon
+        icon={<BsFillPersonPlusFill />}
+        name={"Watched Movies"}
+        destination={"/Register"}
+      />
+      <SidebarIcon
+        icon={<BsFillPersonCheckFill />}
+        name={"Watched Movies"}
+        destination={"/Login"}
+      />
+    </div>
   </div>
 );

@@ -65,7 +65,7 @@ export default () => {
     }
     await sendData();
     if (hasErrors) return;
-    history.push("/MovieDetails");
+    history.push("/Search");
   };
 
   const imageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -172,8 +172,8 @@ export default () => {
       <div className="flex justify-end mt-5">
         <Button
           text={"Create Account"}
-          clickCallback={submit}
           isLoading={isSending}
+          clickCallback={submit}
         />
       </div>
     </div>
